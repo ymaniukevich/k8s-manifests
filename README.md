@@ -1,4 +1,4 @@
-# How to increase PVC in StatefulSet
+## How to increase PVC in StatefulSet
 - Increase its capacity for each PVC
 ```bash
     kubectl edit pvc <name> 

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: default
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: task-pv-storage
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: nginx-pv-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pv-claim
+  namespace: default
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
