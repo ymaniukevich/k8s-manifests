@@ -15,3 +15,10 @@
 ```bash
     kubectl rollout restart sts <name>
 ```
+
+
+
+## How to delete the Evicted/Failed pods?
+```bash
+   kubectl delete pods --field-selector status.phase=Failed --all-namespaces
+```
